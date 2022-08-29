@@ -25,7 +25,7 @@ data "aws_ami" "distro" {
 
   filter {
     name   = "name"
-    values = ["CentOS 8.4.2105 x86_64"]
+    values = ["debian-11-amd64-*"]
   }
 
   filter {
@@ -33,7 +33,7 @@ data "aws_ami" "distro" {
     values = ["hvm"]
   }
 
-  owners = ["125523088429"] # Canonical
+  owners = ["136693071363"] # Debian-11
 }
 
 //AWS VPC Variables
@@ -114,11 +114,11 @@ variable "aws_src_dest_check" {
 }
 
 /*
-* AWS ELB Settings
+* AWS NLB Settings
 *
 */
-variable "aws_elb_api_port" {
-  description = "Port for AWS ELB"
+variable "aws_nlb_api_port" {
+  description = "Port for AWS NLB"
 }
 
 variable "k8s_secure_api_port" {
@@ -132,35 +132,4 @@ variable "default_tags" {
 
 variable "inventory_file" {
   description = "Where to store the generated inventory file"
-}
-
-variable "aws_elb_api_internal" {
-  description   = "AWS ELB Scheme Internet-facing/Internal"
-  type          = bool
-  default	= true
-}
-
-variable "aws_elb_api_public_subnet" {
-  description   = "where to attach AWS ELB API endpoint (public/private subnet)"
-  type          = bool
-  default	= true
-}
-
-/*
-* VPN Connection
-*
-*/
-variable "vpn_connection_enable" {
-  description = "Controls if VPN_Connection should be created"
-  type          = bool
-}
-
-variable "customer_gateway_ip" {
-  type        = string
-  description = "The IP address of the gateway's Internet-routable external interface"
-}
-
-variable "local_cidr" {
-  type        = string
-  description = "The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection."
 }

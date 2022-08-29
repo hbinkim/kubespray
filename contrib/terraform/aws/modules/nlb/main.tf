@@ -2,8 +2,7 @@
 resource "aws_lb" "aws-nlb-api" {
   name               = "kubernetes-nlb-${var.aws_cluster_name}"
   load_balancer_type = "network"
-  internal           = var.aws_elb_api_internal
-  subnets            = length(var.aws_elb_api_subnets) <= length(var.aws_avail_zones) ? var.aws_elb_api_subnets : slice(var.aws_elb_api_subnets, 0, length(var.aws_avail_zones))
+  subnets            = length(var.aws_subnet_ids_public) <= length(var.aws_avail_zones) ? var.aws_subnet_ids_public : slice(var.aws_subnet_ids_public, 0, length(var.aws_avail_zones))
   idle_timeout       = 400
   enable_cross_zone_load_balancing   = true
 
@@ -32,7 +31,7 @@ resource "aws_lb_target_group" "aws-nlb-api-tg" {
 # Create a new AWS NLB Listener listen to target group
 resource "aws_lb_listener" "aws-nlb-api-listener" {
   load_balancer_arn = aws_lb.aws-nlb-api.arn
-  port              = var.aws_elb_api_port
+  port              = var.aws_nlb_api_port
   protocol          = "TCP"
 
   default_action {
