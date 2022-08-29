@@ -17,7 +17,7 @@ bin_dir: /usr/local/bin
 
 
 ## External LB example config
-apiserver_loadbalancer_domain_name: "192.168.9.237"
+apiserver_loadbalancer_domain_name: "kubernetes-nlb-devtest-28225591c735ac88.elb.ap-northeast-3.amazonaws.com"
 loadbalancer_apiserver:
   address: 192.168.9.237
   port: 6443

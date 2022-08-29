@@ -93,7 +93,7 @@ calico_iptables_backend: "Auto"
 # * can-reach=DESTINATION
 # * interface=INTERFACE-REGEX
 # see https://docs.projectcalico.org/reference/node/configuration
-calico_ip_auto_method: "cidr=10.0.10.0/24"
+calico_ip_auto_method: "cidr=10.250.0.0/16"
 # Choose the iptables insert mode for Calico: "Insert" or "Append".
 # calico_felix_chaininsertmode: Insert
 
